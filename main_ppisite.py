@@ -71,32 +71,25 @@ if __name__ == '__main__':
 
 
     args = parser.parse_args()
+    
     dataid_path = args.dataid_path
     embpath = args.emb_path
     typet = args.typet
     epoch = args.epoch
     seed = args.seed
+    d_model=args.d_moel
+    d_v=args.d_v
+    d_k=args.d_k
+    d_ff=args.d_f
+    c_layers=args.c_layers
+    n_heads=args.n_heads
+    lr=args.lr
+    dropout=args.dropout
     lossweight = 15
     batchsize = 32
     thre=0.3
-    
-    params = {
-        "d_model": [128],
-        "d_v": [32],
-        "n_heads": [8],
-        "dropout": [0.5],
-        "lr": [0.001],
-        "thre": [0.30],
-        "c_layers": [1]
-    }
+
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    for d_model in params["d_model"]:
-     for d_v in params["d_v"]:
-      for n_heads in params["n_heads"]:
-       for c_layers in params["c_layers"]:
-        for dropout in params["dropout"]:
-         for lr in params["lr"]:
-            model = PPI_site(d_model, d_v, d_v, d_model, c_layers, n_heads, dropout).to(device)  # d_model=feature dim
-
-            main()
+    model = PPI_site(d_model, d_v, d_v, d_model, c_layers, n_heads, dropout).to(device)  # d_model=feature dim
+    main()
