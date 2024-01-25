@@ -95,7 +95,7 @@ if __name__ == '__main__':
     typet = args.typet
     
     
-    
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     epoch = args.epoch
     seed = args.seed
     lossweight = 1
